@@ -1,0 +1,153 @@
+1. Analyse du cahier des charges
+
+	Le projet consiste à modéliser les données d’un aéroport. 
+	J’ai lu le cahier des charges 	pour repérer les éléments 
+	à gérer, leurs caractéristiques et les liens entre eux.
+
+2. Utilisation de l’IA pour comprendre MERISE
+
+	J’ai utilisé ChatGPT pour comprendre la méthode MERISE et 
+	les étapes de construction d’un MCD.
+
+	Prompt utilisé : « selon ce cahier des charges je dois faire un MCD 
+	et MLD tout seul avec la méthode MERISE j'aimerais que tu m'explique 
+	clairement avec des exemples comment créer un MCD/MLD avec la méthode 
+	MERISE ».
+
+	Cette aide m’a permis de comprendre les notions d’entité, de propriété, 
+	d’identifiant, d’association et de cardinalité.
+
+3. Identification des entités
+
+TABLES			Ce qu'elle représente
+
+- AEROPORT 	: 	Un aéroport avec son nom et ses codes IATA et ICAO
+- COMPAGNIE 	: 	Une compagnie aérienne
+- AVION 	: 	Un avion précis qui appartient à une compagnie
+- TYPE_AVION 	: 	Un modèle d'avion
+- PROGRAMME_VOL : 	Planification d'un vol (trajet, jours, horaires, etc.)
+- JOUR_SEMAINE  :	Un jour de la semaine dans le quel un vol peut être planifié
+- VOL 		: 	Vol avec un trajet, type d'avion, horaires, etc.
+- PASSAGER 	: 	Un client avec son numéro de passeport
+- RESERVATION 	: 	Réservation d'un vol par un passager qui a un siège et un prix 
+
+4. Dictionnaire des données
+
+Champs						Signification						TABLES
+
+aeroport_id					ID de l'aéroport 					AEROPORT
+aeroport_nom					Nom de l'aéroport					AEROPORT
+aeroport_code_iata				Code de 3 lettres pas unique 				AEROPORT
+aeroport_code_icao				Code de 4 lettres unique 				AEROPORT 
+
+compagnie_id					ID de la compagnie 					COMPAGNIE
+compagnie_nom					Nom de la compagnie 					COMPAGNIE
+compagnie_code_iata				Code de 2 lettres					COMPAGNIE
+
+avion_id 					ID de l'avion 						AVION
+avion_immatriculation				Immatriculation de l'avion				AVION
+avion_capacite					Capacité maximum de l'avion				AVION
+
+type_avion_id					ID du type d'avion					TYPE_AVION
+type_avion_nom					Nom du modèle de l'avion				TYPE_AVION
+type_avion_description				Description de l'avion 					TYPE_AVION
+
+programme_vol_id 				ID du programme 					PROGRAMME_VOL
+vol_numero					Numéro du vol 						PROGRAMME_VOL
+programme_heure_depart				Heure de départ 					PROGRAMME_VOL
+programme_heure_arrivee				Heure d'arrivée 					PROGRAMME_VOL
+
+jour_semaine_id					ID du jour (1 pour lundi à 7 pour dimanche)		JOUR_SEMAINE
+jour_semaine_libelle				Nom du jour						JOUR_SEMAINE
+
+vol_id						ID du vol 						VOL
+vol_date					Date du vol						VOL
+vol_heure_depart				L'heure de départ du vol				VOL
+vol_heure_arrivee				L'heure d'arrivée du vol				VOL
+
+passager_id					ID du passager						PASSAGER
+passager_numero_passeport			Numéro de passeport du passager				PASSAGER
+passager_nom					Nom du passager						PASSAGER
+passager_prenom					Prénom du passager 					PASSAGER
+
+reservation_id					ID de la réservation 					RESERVATION
+reservation_siege				Référence du siege 					RESERVATION
+reservation_prix				Prix du billet 						RESERVATION 
+
+5. Règles 
+
+RG01 : Une compagnie est basée dans un et un seul aéroport principal
+       Un aéroport peut être la base de zéro à plusieurs compagnies
+
+RG02 : Un avion appartient à une et une seule compagnie
+       Une compagnie peut posséder zéro à plusieurs avions
+
+RG03 : Un avion correspond à un et un seul type d'avion
+       Un type d'avion peut correspondre à zéro à plusieurs avions
+
+RG04 : Un programme de vol est exploité par une et une seule compagnie
+       Une compagnie peut exploiter zéro à plusieurs programmes de vol
+
+RG05 : Un programme de vol prévoit un et un seul aéroport de départ
+       Un aéroport peut être le départ prévu de zéro à plusieurs programmes
+
+RG06 : Un programme de vol prévoit un et un seul aéroport d'arrivée
+       Un aéroport peut être l'arrivée prévue de zéro à plusieurs programmes
+
+RG07 : Un programme de vol fonctionne un à plusieurs jours de la semaine
+       Un jour de la semaine peut concerner zéro à plusieurs programmes
+
+RG08 : Un vol suit un et un seul programme de vol
+       Un programme de vol peut donner lieu à zéro à plusieurs vols
+
+RG09 : Un vol est effectué avec un et un seul avion
+       Un avion peut effectuer zéro à plusieurs vols au fil du temps
+
+RG10 : Un vol est opéré par une et une seule compagnie
+       Une compagnie peut opérer zéro à plusieurs vols
+
+RG11 : Un vol possède un et un seul aéroport de départ
+       Un aéroport peut être le départ de zéro à plusieurs vols
+       Ce départ peut différer de celui du programme de vol
+
+RG12 : Un vol possède un et un seul aéroport d'arrivée
+       Un aéroport peut être l'arrivée de zéro à plusieurs vols
+       Cette arrivée peut différer de celle du programme de vol
+
+RG13 : Une réservation concerne un et un seul passager
+       Un passager peut avoir zéro à plusieurs réservations
+
+RG14 : Une réservation concerne un et un seul vol
+       Un vol peut avoir zéro à plusieurs réservations
+
+
+6. Cardinalités
+
+
+RG01 	- 	ETRE_BASEE 		- 	COMPAGNIE (1,1) et AEROPORT (0,N)
+
+RG02 	- 	POSSEDER 		- 	COMPAGNIE (0,N) et AVION (1,1)
+
+RG03 	- 	ETRE_DE_TYPE 		- 	AVION (1,1) et TYPE_AVION (0,N)
+
+RG04 	- 	EXPLOITER_PROGRAMME 	- 	COMPAGNIE (0,N) et PROGRAMME_VOL (1,1)
+
+RG05 	- 	PREVOIR_DEPART 		- 	PROGRAMME_VOL (1,1) et AEROPORT (0,N)
+
+RG06 	-	PREVOIR_ARRIVEE 	- 	PROGRAMME_VOL (1,1) et AEROPORT (0,N)
+
+RG07 	- 	FONCTIONNER_LE 		- 	PROGRAMME_VOL (1,N) et JOUR_SEMAINE (0,N)
+
+RG08 	- 	SUIVRE_PROGRAMME 	- 	VOL (1,1) et PROGRAMME_VOL (0,N)
+
+RG09	- 	AFFECTER_AVION 		- 	VOL (1,1) et AVION (0,N)
+
+RG10 	- 	OPERER_VOL 		- 	COMPAGNIE (0,N) et VOL (1,1)
+
+RG11 	- 	PARTIR_DE 		- 	VOL (1,1) et AEROPORT (0,N)
+
+RG12 	- 	ARRIVER_A 		- 	VOL (1,1) et AEROPORT (0,N)
+
+RG13 	- 	CONCERNER_PASSAGER 	- 	RESERVATION (1,1) et PASSAGER (0,N)
+
+RG14 	- 	CONCERNER_VOL 		- 	RESERVATION (1,1) et VOL (0,N)
