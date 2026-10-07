@@ -1,2 +1,4 @@
 BDD/db_aeroport.sql filter=lfs diff=lfs merge=lfs -text
 MCD-MLD/Données-Projet-Aeroport/** filter=lfs diff=lfs merge=lfs -text
+BDD/* filter=lfs diff=lfs merge=lfs -text
+BDD/** filter=lfs diff=lfs merge=lfs -text
