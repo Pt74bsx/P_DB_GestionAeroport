@@ -114,9 +114,9 @@ P_DB_GestionAeroport/
 - [x] Création du modèle de données avec Looping
 - [x] Ajout de la documentation du projet
 - [x] Rédaction du rapport
-- [ ] Finalisation et validation du modèle
-- [ ] Ajout du schéma SQL
-- [ ] Ajout de données de démonstration
+- [x] Finalisation et validation du modèle
+- [x] Ajout du schéma SQL
+- [x] Ajout de données de démonstration
 - [ ] Création des requêtes SQL
 - [ ] Documentation des résultats
 
