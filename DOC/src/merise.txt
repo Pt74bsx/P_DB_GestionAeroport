@@ -9,10 +9,22 @@
 	J’ai utilisé ChatGPT pour comprendre la méthode MERISE et 
 	les étapes de construction d’un MCD.
 
-	Prompt utilisé : « selon ce cahier des charges je dois faire un MCD 
-	et MLD tout seul avec la méthode MERISE j'aimerais que tu m'explique 
-	clairement avec des exemples comment créer un MCD/MLD avec la méthode 
-	MERISE ».
+	Prompt utilisé : « 
+Explique-moi la méthode MERISE de manière pédagogique, progressive et avec des mots simples. Mon objectif est de comprendre son fonctionnement et de savoir construire un MCD et un MLD.
+Je suis débutant : définis chaque terme technique avant de l’utiliser et explique le raisonnement derrière chaque étape.
+
+Organise ton explication ainsi :
+
+1. Le rôle de MERISE : à quoi sert cette méthode et dans quelles situations l’utilise-t-on ?
+
+2. Les notions essentielles du MCD : entités, attributs, identifiants, associations et cardinalités. Pour chaque notion, donne une définition simple et un exemple concret. Explique particulièrement comment déterminer et lire les cardinalités dans les deux sens.
+
+3. Un exemple complet : utilise une petite boutique avec des clients, des commandes et des produits. Pars des règles de gestion, puis construis le MCD étape par étape en justifiant chaque choix.
+
+4. Un récapitulatif clair : résume la démarche à suivre et les erreurs fréquentes à éviter.
+
+Conserve le même exemple tout au long de l’explication et utilise des schémas ou des tableaux lisibles pour rendre les relations concrètes.
+Ne présente pas de MPD, de code SQL ni d’exercice. N’explique pas ce qu’est SQL ou comment l’utiliser. Concentre-toi sur la compréhension de MERISE, du MCD et du MLD. ».
 
 	Cette aide m’a permis de comprendre les notions d’entité, de propriété, 
 	d’identifiant, d’association et de cardinalité.
@@ -151,3 +163,71 @@ RG12 	- 	ARRIVER_A 		- 	VOL (1,1) et AEROPORT (0,N)
 RG13 	- 	CONCERNER_PASSAGER 	- 	RESERVATION (1,1) et PASSAGER (0,N)
 
 RG14 	- 	CONCERNER_VOL 		- 	RESERVATION (1,1) et VOL (0,N)
+
+
+
+
+
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_aeroport.tsv'
+INTO TABLE t_aeroport
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(aeroport_id, @iata, @icao, nom)
+SET
+    code_iata = NULLIF(@iata, 'NULL'),
+    code_icao = NULLIF(@icao, 'NULL');
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_compagnie.tsv'
+INTO TABLE t_compagnie
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_type_avion.tsv'
+INTO TABLE t_type_avion
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_avion.tsv'
+INTO TABLE t_avion
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_passager.tsv'
+INTO TABLE t_passager
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_programme_vol.tsv'
+INTO TABLE t_programme_vol
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_vol.tsv'
+INTO TABLE t_vol
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+LOAD DATA INFILE '/var/lib/mysql-files/t_reservation.tsv'
+INTO TABLE t_reservation
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
