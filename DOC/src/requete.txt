@@ -1,0 +1,135 @@
+Requête n°1 :
+
+Afficher les 2 premiers avions de la compagnie compagnie_id = 60, triés par capacité 
+décroissante.  
+Vous devez afficher toutes les colonnes.
+
+
+Requête n°2 :  
+
+Afficher les 3 premiers vols les plus récents (heure de départ la plus tardive). 
+Vous devez afficher toutes les colonnes. 
+
+
+Requête n°3 :  
+
+Afficher le nombre total de vols opérés par chaque compagnie aérienne (compagnie_fk). 
+Le résultat doit être ordonné par le nombre de vols de manière décroissante. 
+Aide : Vous ne devez afficher que 2 colonnes dans le SELECT. 
+
+
+Requête n°4:  
+
+Afficher la liste des passagers, leur numéro de passeport, ainsi que l'aéroport de départ du 
+vol réservé. 
+
+1ère colonne : nom du passager 
+2ème colonne : prénom du passager 
+3ème colonne : numéro de passeport du passager 
+4ème colonne : nom de l’aéroport de départ
+
+Requête n°5:  
+
+Affiche le prix moyen des réservations pour chaque vol (vol_fk). 
+Le résultat doit être ordonné par le prix moyen du plus petit au plus grand. 
+
+
+Requête n°6:  
+
+Afficher tous les noms d’aéroports, ainsi que le nom des compagnies basées dans chaque 
+aéroport (y compris ceux sans compagnie). 
+
+
+Requête n°7:  
+
+Afficher toutes les compagnies aériennes, avec le nombre d’avions qu’elles possèdent, 
+même celles qui n’en ont pas. Le résultat doit être ordonné par le nombre d’avions du plus 
+grand au plus petit. 
+
+
+Requête n°8: 
+
+Afficher uniquement les compagnies (compagnie_fk) ayant au moins 1500 vols. 
+Le résultat doit être ordonné par le nombre de vols du plus grand au plus petit et limité au 5 
+premier enregistrements. 
+
+
+Requête n°9:  
+
+Afficher le nombre de vols opérés par chaque compagnie (nom) depuis chaque aéroport 
+de départ (nom). 
+Ordonner le résultat par le nom (alphabétiquement) et par le nombre de vols du plus grand 
+au plus petit. 
+
+1ère colonne : nom de la compagnie 
+2ème colonne : nom de l’aéroport 
+3ème colonne : nombre de vols 
+
+
+Requête n°10 : 
+
+Afficher la capacité totale des avions pour chaque compagnie (nom) et type d’avion (nom). 
+Ordonner le résultat par la capacité totale des avions du plus grand au plus petit. 
+
+Aide : 3 colonnes dans le SELECT. 
+
+
+Requête n°11 : 
+
+Afficher les compagnies qui n'ont aucun avion. Pour cela, vous devez utiliser une sous
+requête. Ordonner le résultat par le nom de la compagnie dans l’ordre alphabétique. 
+
+Aide : 1 colonne dans le SELECT : Le nom de la compagnie. 
+
+
+Requête n°12 : 
+
+Lister les vols qui partent d'un aéroport spécifique (via son code IATA). 
+Imaginons que vous voulez tous les numéros de vols partant de l'aéroport de Montpellier 
+('MPL'), mais vous ne connaissez pas son ID technique. 
+
+Aide :  
+• 1ère colonne dans le SELECT : Numéro de vol du programme de vol 
+• 2ème colonne dans le SELECT : Heure de départ du programme de vol 
+
+
+Requête n°13 : 
+
+Vous devez créer une requête à l’aide des REGEXP qui permettra de valider que chaque 
+numero de passeport des passagers respecte le format 1 lettre puis 6 chiffres. 
+
+Pour cela : 
+
+- la 1ère colonne affiche le nombre total de passagers : Nom de la colonne total_passagers 
+- la 2ème colonne affiche la somme des passeports valides : Nom de la colonne total_valides 
+- la 3ème colonne affiche la somme des passeports invalides : Nom de la colonne total_invalides 
+
+Idéalement, vous devriez le même nombre pour le total_passagers et total_valides et 0 pour 
+total invalides 
+
+
+Requête n°14 : 
+
+Dans les programmes de vol, vous devez chercher les numéros de vol qui commencent par 
+"AM" ou "SL", suivis de 4 chiffres, mais dont le 2ème est obligatoirement 8. 
+
+
+Requête n°15 : 
+
+Vous voulez identifier les compagnies aériennes qui possèdent plus de 2 avions "LongCourriers". 
+On définit un avion "Long-Courrier" par son nom de modèle dans la table t_type_avion qui contient 
+soit le mot "Airbus" suivi des séries 330, 340, 350 ou 380, soit le mot "Boeing" 
+suivi des séries 747, 777 ou 787. 
+
+Dans la requête principale : - - 
+
+La 1ère colonne : le nom de la compagnie 
+La 2ème colonne : nombre d’avions de long courrier  
+
+Ordonner le résultat par le nombre d’avions de long courrier du plus grand au plus petit.
+
+
+
+
+
+
