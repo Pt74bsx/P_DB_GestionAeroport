@@ -57,13 +57,19 @@ L’étape suivante consiste à générer ou écrire le schéma SQL, insérer de
 
 ```text
 P_DB_GestionAeroport/
+├── BDD/
+│   ├── db_aeroport2026.10.06.sql
+│   └── db_aeroport2026.10.07.sql
 ├── MCD-MLD/
-│   └── gestionAeroport.loo
-├── doc/
+│   ├── gestionAeroport.loo
+│   └── aéroport.loo
+├── DOC/
 │   ├── E-P_DB-GCR001-CdC-2026.pdf
 │   └── src/
 │       ├── AugustoRomain-P_DB_GestionAeroport-Rapport.docx
 │       └── E-P_DB-GCR001-CdC-2026.docx
+│
+├── .gitattributes
 └── README.md
 ```
 
